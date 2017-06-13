@@ -1,0 +1,19 @@
+// .ToolTipPortal {
+//     &:first-child(){
+//         background-color: $dark_grey;
+//         &:first-child() * {
+//             border-color: $dark_grey !important;
+//         }
+//     }
+// }
+
+.tooltip__content {
+    display: flex;
+    align-items: center;
+    padding: $space;
+    * {
+        margin:0;
+    }
+    color: $dark_grey;
+    font-size: 1.2rem;
+}

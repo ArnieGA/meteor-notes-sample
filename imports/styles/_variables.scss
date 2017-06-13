@@ -1,0 +1,55 @@
+// Colors
+$grey: #dddddd;
+$dark_grey: #777777;
+$medium_grey: #e1e1e1;
+$light_grey: #f9f9f9;
+$brand_primary: #5b4681;
+$checkbox-checkmark-color: #09ad7e;
+
+// Spacing
+$space: 1.4rem;
+$site_max_width: 50%;
+$small_padding: 1rem;
+
+// Font sizes:
+$base_font_size: 1.6rem;
+$large_font_size: 1.8rem;
+
+// Font thickness:
+$thin_font: 300;
+
+// Form input:
+$input_border: $grey;
+
+// Boxed view variables
+$boxed_view_overlay_bg: $grey;
+$boxed_view_box_bg: ghostwhite;
+$boxed_view_width_normal: 24rem;
+$boxed_view_width_wider: 30rem;
+$boxed_view_width_max: 50rem;
+
+// Buttons
+$button_bg: $brand_primary;
+$button_text_color: ghostwhite;
+$button_pill_color: $brand_primary;
+$button_secondary_bg:  $light_grey;
+$button_secondary_color: $dark_grey;
+$button_secondary_border_color: #dddddd;
+// ---- Lighten
+$button_bg_lighten: lighten($button_bg, 8%);
+$button_text_color_lighten: lighten($button_text_color, 8%);
+$button_pill_color_lighten: lighten($button_pill_color, 20%);
+$button_secondary_bg_lighten:  lighten($button_secondary_bg, 8%);
+$button_secondary_color_lighten: lighten($button_secondary_color, 8%);
+$button_secondary_border_color_lighten: lighten($button_secondary_border_color, 8%);
+// ---- Darken
+$button_bg_darken: darken($button_bg, 8%);
+$button_text_color_darken: darken($button_text_color, 8%);
+$button_pill_color_darken: darken($button_pill_color, 10%);
+$button_secondary_bg_darken:  darken($button_secondary_bg, 8%);
+$button_secondary_color_darken: darken($button_secondary_color, 8%);
+$button_secondary_border_color_darken: darken($button_secondary_border_color, 8%);
+// Item
+$item_bg: $light_grey;
+$item_border_color: darken($item_bg, 8%);
+$item_text_color: $dark_grey;

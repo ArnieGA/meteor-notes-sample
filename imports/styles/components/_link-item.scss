@@ -1,0 +1,33 @@
+.item-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 35rem;
+    @media screen and (max-width: 39.9374em){
+        min-width: 60%;
+    }
+    
+    > .button {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+    }
+}
+
+.item {
+    background-color: $item_bg;
+    border: 1px solid $item_border_color;
+    margin-bottom: $space;
+    padding: $space;
+}
+
+.item__message {
+    color: $item_text_color;
+}
+
+.item__status-message {
+    color: $item_text_color;
+    font-style: italic;
+    text-align: center;
+    margin: 0;
+}

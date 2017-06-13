@@ -1,0 +1,14 @@
+.no-links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $medium_grey;
+    padding: $space * 2;
+    > * {
+        margin: 0;
+    }
+}
+
+.links-container {
+    background-color: $light_grey;
+}

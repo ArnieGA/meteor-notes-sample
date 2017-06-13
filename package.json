@@ -1,0 +1,33 @@
+{
+  "name": "meteor-notes",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "test": "meteor test --driver-package=practicalmeteor:mocha"
+  },
+  "engines": {
+    "node": "4.8.3"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.20.0",
+    "clipboard": "^1.6.1",
+    "meteor-node-stubs": "^0.2.11",
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
+    "react": "^15.5.4",
+    "react-addons-pure-render-mixin": "^15.5.2",
+    "react-dom": "^15.5.4",
+    "react-flip-move": "^2.9.13",
+    "react-modal": "^1.7.7",
+    "react-portal-tooltip": "^1.1.5",
+    "react-router-dom": "^4.1.1",
+    "shortid": "^2.2.8",
+    "simpl-schema": "^0.3.0",
+    "uuid": "^3.0.1"
+  },
+  "devDependencies": {
+    "enzyme": "^2.8.2",
+    "expect": "^1.20.2",
+    "react-addons-test-utils": "15.4.0"
+  }
+}

@@ -1,0 +1,146 @@
+/*=== CHECKBOXES WITH LABEL ELEMENT AFTER ===*/
+    /* Base for label styling */
+    .checkbox--labeled__container {
+        display: flex;
+        align-items: center;
+        margin-bottom: $space;
+    }
+    .checkbox--labeled:not(:checked),
+    .checkbox--labeled:checked {
+    position: absolute;
+    left: -9999px;
+    }
+    .checkbox--labeled:not(:checked) + label,
+    .checkbox--labeled:checked + label {
+    position: relative;
+    // padding-left: 1.95em;
+    padding: .6rem 0 .6rem 3rem;
+    cursor: pointer;
+    }
+
+    /* checkbox aspect */
+    .checkbox--labeled:not(:checked) + label:before,
+    .checkbox--labeled:checked + label:before {
+    content: '';
+    position: absolute;
+    left: 0; top: .195rem;
+    width: 1.25em; height: 1.25em;
+    border: 2px solid #ccc;
+    background: #fff;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+    -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+    -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+    }
+    /* checked mark aspect */
+    .checkbox--labeled:not(:checked) + label:after,
+    .checkbox--labeled:checked + label:after {
+    content: '✔';
+    position: absolute;
+    top: .5rem; left: .4rem;
+    font-size: 1.35em;
+    line-height: 0.8;
+    color: $checkbox-checkmark-color;
+    transition: all .2s;
+    -moz-transition: all .2s;
+    -webkit-transition: all .2s;
+    }
+    /* checked mark aspect changes */
+    .checkbox--labeled:not(:checked) + label:after {
+    opacity: 0;
+    transform: scale(0);
+    -moz-transform: scale(0);
+    -webkit-transform: scale(0);
+    }
+    .checkbox--labeled:checked + label:after {
+    opacity: 1;
+    transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1);
+    }
+    /* disabled checkbox */
+    .checkbox--labeled:disabled:not(:checked) + label:before,
+    .checkbox--labeled:disabled:checked + label:before {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+    }
+    .checkbox--labeled:disabled:checked + label:after {
+    color: #999;
+    }
+    .checkbox--labeled:disabled + label {
+    color: #aaa;
+    }
+
+/*=== CHECKBOXES WITHOUT LABEL ELEMENT AFTER (SINGLE): ===*/
+    /* Base for label styling */
+    .checkbox {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        outline: 0;
+        &:not(:checked), &:checked {
+            cursor: pointer;
+            left: 0; top: .195rem;
+            width: 1.25em !important; height: 1.25em !important;
+            border: 2px solid #ccc;
+            background: #fff;
+            border-radius: 4px;
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+            -moz-box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+            -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+
+            &:before{
+                content: '';
+                // position: absolute;
+            }
+            &:after {
+                content: '✔';
+                position: absolute;
+                top: 0 !important; left: .2rem !important;
+                font-size: 1.35em;
+                line-height: 0.8;
+                color: $checkbox-checkmark-color;
+                transition: all .2s;
+                -moz-transition: all .2s;
+                -webkit-transition: all .2s;
+            }
+        }
+        &:not(:checked){
+            &:after{
+                opacity: 0;
+                transform: scale(0);
+                -webkit-transform: scale(0);
+                -webkit-transform: scale(0);
+            }
+        }
+        &:checked{
+            &:after {
+                opacity: 1;
+                transform: scale(1);
+                -moz-transform: scale(1);
+                -webkit-transform: scale(1);
+            }
+        }
+    }
+    /* disabled checkbox */
+    .checkbox:disabled:not(:checked) :before,
+    .checkbox:disabled:checked :before {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #bbb;
+    background-color: #ddd;
+    }
+    .checkbox:disabled:checked :after {
+    color: #999;
+    }
+    .checkbox:disabled {
+    color: #aaa;
+    }
