@@ -17,8 +17,8 @@ export class Editor extends React.Component {
         this.closeRemoveConfirmModal = this.closeRemoveConfirmModal.bind(this);
         this.state = {
             openRemoveConfirmModal: false,
-            title: '',
-            body: ''
+            title: this.props.note ? this.props.note.title : '',
+            body: this.props.note ? this.props.note.body : ''
         };
     }
     componentDidUpdate(prevProps, prevState) {

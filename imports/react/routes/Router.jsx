@@ -28,7 +28,7 @@ export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
 };
 
 const routes = [
-    { path: '/', exact: true, component: Login, privacy: 'unauth', rootPage: true, documentTitle:'Notes: Login' },
+    { path: '/', exact: true, component: Login, privacy: 'unauth', rootPage: true, documentTitle: 'Notes: Login' },
     { path: '/signup', exact: true, component: Signup, privacy: 'unauth', documentTitle: 'Notes: Signup' },
     { path: '/dash', exact: true, component: Dashboard, privacy: 'auth', mainPage: true, documentTitle: 'Notes: Dashboard' },
     { path: '/dash/:id', exact: true, component: Dashboard, privacy: 'auth' },
@@ -36,12 +36,18 @@ const routes = [
     { component: PageNotFound, privacy: 'unauth', documentTitle: '404: Not found' }
 ];
 
+// Start the selected note id tracker
+const selectedNoteIdTracker = Tracker.autorun(() => {
+    let selectedNoteId = Session.get('selectedNoteId');
+    if (selectedNoteId) {
+        history.push(`/dash/${selectedNoteId}`);
+    }
+});
+
+
 export class RoutesWithSubRoutes extends React.Component {
     constructor(props) {
         super(props);
-    }
-    componentWillUpdate(nextProps, nextState) {
-        onAuthChange(Session.get('userAuthenticated'), Session.get('currentPagePrivacy'));
     }
     render() {
         return (
@@ -59,25 +65,6 @@ export class RoutesWithSubRoutes extends React.Component {
 class _Router extends React.Component {
     constructor(props) {
         super(props);
-    }
-    componentWillMount(){
-        // Start the selected note id tracker
-        this.selectedNoteIdTracker = Tracker.autorun(() => {
-            let selectedNoteId = Session.get('selectedNoteId');
-            if (selectedNoteId) {
-                if (!Notes.findOne({ _id: selectedNoteId })) {
-                    Session.set('selectedNoteId', undefined);
-                    history.replace(routes.find(component => component.mainPage).path);
-                }
-                else {
-                    history.replace(`/dash/${selectedNoteId}`);
-                }
-            }
-        });        
-    }
-    componentWillUnmount(){
-        // Stop all trackers:
-        this.selectedNoteIdTracker.stop();        
     }
     render() {
         return (

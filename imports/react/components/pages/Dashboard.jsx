@@ -21,7 +21,9 @@ class Dashboard extends React.Component {
     }
     componentWillUpdate(nextProps, nextState) {
         this.props.Session.set('currentPagePrivacy', nextProps.pagePrivacy);
-        this.props.Session.set('selectedNoteId', nextProps.match.params.id);
+        if (this.props.match.params.id && nextProps.match.params.id !== this.props.match.params.id) {
+            this.props.Session.set('selectedNoteId', nextProps.match.params.id);
+        }
     }
     render() {
         return (
@@ -47,16 +49,7 @@ export default createContainer((props) => {
         Subscription: Meteor.subscribe('notes', {
             onReady: () => {
                 const id = props.match.params.id;
-                if (!!id) {
-                    if (!Notes.findOne({ _id: id })) {
-                        Session.set('selectedNoteId', undefined);
-                        props.history.push('/NotFound');
-                    }
-                    else
-                    { Session.set('selectedNoteId', id); }
-                } else {
-                    Session.set('selectedNoteId', undefined);
-                }
+                Session.set('selectedNoteId', id);
             }
         }),
         pagePrivacy: props.privacy,
