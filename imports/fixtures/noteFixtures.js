@@ -14,6 +14,20 @@ export const testNotes = [
         body: 'Document 2 body',
         updatedAt: 0,
         userId: 'userId2'
+    },
+    {
+        _id: 'editedNote',
+        title: 'Some title',
+        body: 'Some content',
+        updatedAt: 0,
+        userId: 'userId3'
+    },
+    {
+        _id: 'emptyNote',
+        title: '',
+        body: '',
+        updatedAt: 0,
+        userId: 'userId4'
     }
 ];
 

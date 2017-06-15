@@ -1,14 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Tooltip from 'react-portal-tooltip';
-import { history } from '/imports/react/App';
-import Modal from 'react-modal';
+// Meteor
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session'; //<-- meteor add session
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
+import Tooltip from 'react-portal-tooltip';
+import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
-import { userCredentialsSchema } from '/imports/startup/simple-schema-config';
 import { createContainer } from 'meteor/react-meteor-data';
+// Named exports
+import { userCredentialsSchema } from '/imports/startup/simple-schema-config';
+import { history } from '/imports/react/App';
 
 export class Signup extends React.Component {
     constructor(props) {
@@ -28,8 +31,8 @@ export class Signup extends React.Component {
         this.closeSuccessModal = this.closeSuccessModal.bind(this);
     }
     componentWillMount() {
-        Session.set('currentPagePrivacy', this.props.pagePrivacy);
         document.title = this.props.documentTitle;
+        this.props.Session.set('currentPagePrivacy', this.props.pagePrivacy);
     }
     onSubmit(e) {
         e.preventDefault();
@@ -152,7 +155,12 @@ export class Signup extends React.Component {
                     <h1>Signup Form</h1>
                     {this.state.error ? <p className="boxed-view__error">{this.state.error}</p> : undefined}
                     <form className='boxed-view__form' onSubmit={this.onSubmit.bind(this)} noValidate>
-                        <input type="email" ref="email" name="email" placeholder="Email" onChange={(e) => { this.setState({ email: e.target.value.trim() }) }} value={this.state.email} />
+                        <input type="email" ref="email" name="email"
+                            placeholder="Email"
+                            onChange={(e) => {
+                                this.setState({ email: e.target.value.trim() })
+                            }}
+                            value={this.state.email} />
                         <input id='passwrd'
                             onFocus={this.openPwdTtip.bind(this)}
                             onBlur={this.closePwdTtip.bind(this)}
@@ -160,7 +168,9 @@ export class Signup extends React.Component {
                             ref="password"
                             name="password"
                             placeholder="Password (6-8 characters)"
-                            onChange={(e) => { this.setState({ password: e.target.value.trim() }); }}
+                            onChange={(e) => {
+                                this.setState({ password: e.target.value.trim() });
+                            }}
                             value={this.state.password} />
                         <Tooltip active={this.state.pwdTtipActive} position='right' arrow='center' parent='#passwrd'>
                             <div className='tooltip__content'>
@@ -170,7 +180,9 @@ export class Signup extends React.Component {
                         <input
                             type="password" ref="rePassword" name="rePassword"
                             placeholder="Re-enter your password"
-                            onChange={(e) => { this.setState({ rePassword: e.target.value.trim() }); }}
+                            onChange={(e) => {
+                                this.setState({ rePassword: e.target.value.trim() });
+                            }}
                             value={this.state.rePassword} />
                         <button className='button'>Create Account</button>
                     </form>
@@ -182,15 +194,16 @@ export class Signup extends React.Component {
 }
 
 Signup.propTypes = {
+    Session: PropTypes.object.isRequired,
     createUser: PropTypes.func.isRequired,
     pagePrivacy: PropTypes.string.isRequired,
-    documentTitle: PropTypes.string.isRequired
+    documentTitle: PropTypes.string
 };
 
 export default createContainer((props) => {
     return {
+        Session,
         createUser: Accounts.createUser,
-        Session: Session,
         Subscription: Meteor.subscribe('email'),
         pagePrivacy: props.privacy,
         documentTitle: props.documentTitle

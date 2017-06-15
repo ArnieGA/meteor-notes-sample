@@ -1,11 +1,14 @@
+// Meteor
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
+import { createContainer } from 'meteor/react-meteor-data';
+// React
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createContainer } from 'meteor/react-meteor-data';
-import { Session } from 'meteor/session';
-import { Notes } from '/imports/api/notes';
-import { Meteor } from 'meteor/meteor';
-import { defaultNoteTitle } from '/imports/fixtures/noteFixtures';
 import Modal from 'react-modal';
+// Api
+import { Notes } from '/imports/api/notes';
+import { defaultNoteTitle } from '/imports/fixtures/noteFixtures';
 
 export class Editor extends React.Component {
     constructor(props) {
@@ -45,12 +48,10 @@ export class Editor extends React.Component {
         });
     }
     handleNoteRemove(e) {
-        this.closeRemoveConfirmModal()
-            .then(() => {
-                this.props.call('notes.remove', this.props.note._id, (err) => {
-                    if (err) throw new Meteor.Error(err.error, err.reason);
-                });
-            });
+        this.props.call('notes.remove', this.props.note._id, (err) => {
+            this.closeRemoveConfirmModal();
+            if (err) throw new Meteor.Error(err.error, err.reason);
+        });
     }
     // MODAL ACTIONS
     openRemoveConfirmModal() {
@@ -75,22 +76,26 @@ export class Editor extends React.Component {
                         overlayClassName='boxed-view boxed-view--modal'
                         onRequestClose={this.closeRemoveConfirmModal}>
                         <h2>{`Are you sure you want to remove note '${this.props.note.title || defaultNoteTitle}'`}</h2>
-                        <button ref='modalRemove' className='button button--pill hover-alt-color thicker'
+                        <button ref='modalConfirmRemove' className='button button--pill hover-alt-color thicker'
                             style={{ marginRight: '1rem' }}
                             onClick={this.handleNoteRemove}>Yes, remove</button>
-                        <button ref='modalRemove' className='button button--secondary hover-alt-color'
+                        <button ref='modalCancel' className='button button--secondary hover-alt-color'
                             onClick={this.closeRemoveConfirmModal}>Cancel</button>
                     </Modal>
                     <input type="text" placeholder="Your Note's Title..."
+                        ref='noteTitle'
+                        name='noteTitle'
                         onChange={this.handleTitleChange}
                         value={this.state.title} />
                     <textarea
                         ref="noteBody"
+                        name='noteBody'
                         cols="30" rows="10"
                         value={this.state.body}
                         placeholder='Type in your note here'
                         onChange={this.handleBodyChange}></textarea>
                     <button
+                        ref='removeNote'
                         className='button button--pill hover-alt-color'
                         onClick={this.openRemoveConfirmModal}>Delete Note</button>
                 </div>

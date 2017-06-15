@@ -1,9 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// Meteor
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session'; //<-- meteor add session
 import { createContainer } from 'meteor/react-meteor-data';
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 export class Login extends React.Component {
     constructor(props) {
@@ -14,9 +16,9 @@ export class Login extends React.Component {
         };
         this.clearFields = this.clearFields.bind(this);
     }
-    componentWillMount(){
-        Session.set('currentPagePrivacy', this.props.pagePrivacy);
+    componentWillMount() {
         document.title = this.props.documentTitle;
+        this.props.Session.set('currentPagePrivacy', this.props.pagePrivacy);
     }
     onSubmit(e) {
         e.preventDefault();
@@ -78,15 +80,16 @@ export class Login extends React.Component {
 }
 
 Login.propTypes = {
+    Session: PropTypes.object.isRequired,
     loginWithPassword: PropTypes.func.isRequired,
     pagePrivacy: PropTypes.string.isRequired,
-    documentTitle: PropTypes.string.isRequired
+    documentTitle: PropTypes.string
 };
 
 export default createContainer((props) => {
     return {
+        Session,
         loginWithPassword: Meteor.loginWithPassword,
-        Session: Session,
         pagePrivacy: props.privacy,
         documentTitle: props.documentTitle
     };

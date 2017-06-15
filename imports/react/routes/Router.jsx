@@ -1,10 +1,15 @@
+// Meteor
+import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session'; //<-- meteor add session
+import { Tracker } from 'meteor/tracker';
+// React
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'react-router-dom';
 import { history } from '/imports/react/App';
-import { Tracker } from 'meteor/tracker';
+// API's
 import { Notes } from '/imports/api/notes';
-// Grab the Website pages (components):
+// PAGES:
 import Dashboard from '/imports/react/components/pages/Dashboard';
 import Login from '/imports/react/components/pages/Login';
 import Signup from '/imports/react/components/pages/Signup';
@@ -38,9 +43,11 @@ const routes = [
 
 // Start the selected note id tracker
 const selectedNoteIdTracker = Tracker.autorun(() => {
-    let selectedNoteId = Session.get('selectedNoteId');
-    if (selectedNoteId) {
-        history.push(`/dash/${selectedNoteId}`);
+    if (Meteor.isClient) {
+        const selectedNoteId = Session.get('selectedNoteId');
+        if (selectedNoteId) {
+            history.push(`/dash/${selectedNoteId}`);
+        }
     }
 });
 

@@ -1,8 +1,9 @@
 import { Meteor } from 'meteor/meteor';
+import { Session } from 'meteor/session';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import expect from 'expect';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 
 import { Login } from './Login';
 
@@ -12,7 +13,10 @@ if (Meteor.isClient) {
             const error = 'This stuff is not working man!';
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/']} initialIndex={0}>
-                    <Login loginWithPassword={() => { }} pagePrivacy='auth' />
+                    <Login
+                        loginWithPassword={() => { }}
+                        pagePrivacy='auth'
+                        Session={Session} />
                 </MemoryRouter>
             );
 
@@ -28,11 +32,13 @@ if (Meteor.isClient) {
             expect(wrapper.find('p.boxed-view__error').length).toBe(0);
         });
 
-        it('Should set an error if no credentials were present on submit', function(){            
-            const spy = expect.createSpy();
+        it('Should set an error if no credentials were present on submit', function () {
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/']} initialIndex={0}>
-                    <Login loginWithPassword={spy} />
+                    <Login
+                        loginWithPassword={() => { }}
+                        pagePrivacy='auth'
+                        Session={Session} />
                 </MemoryRouter>
             );
 
@@ -48,7 +54,10 @@ if (Meteor.isClient) {
 
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/']} initialIndex={0}>
-                    <Login loginWithPassword={spy} />
+                    <Login
+                        loginWithPassword={spy}
+                        pagePrivacy='auth'
+                        Session={Session} />
                 </MemoryRouter>
             );
 
@@ -69,7 +78,10 @@ if (Meteor.isClient) {
 
             const wrapper = mount(
                 <MemoryRouter initialEntries={['/']} initialIndex={0}>
-                    <Login loginWithPassword={spy} />
+                    <Login
+                        loginWithPassword={spy}
+                        pagePrivacy='auth'
+                        Session={Session} />
                 </MemoryRouter>
             );
 
@@ -79,7 +91,7 @@ if (Meteor.isClient) {
             wrapper.find('form.boxed-view__form').simulate('submit');
             expect(spy).toHaveBeenCalled();
             // Simulate an error thrown by .loginWithPassword()
-            spy.calls[0].arguments[2]({reason: 'just failed dude!'});
+            spy.calls[0].arguments[2]({ reason: 'just failed dude!' });
             expect(wrapper.find(Login).node.state['error'].length).toNotBe(0);
             // Assert that a successful call to .loginWithPassword() (a call with no errors thrown)
             // sets the error state value to '':

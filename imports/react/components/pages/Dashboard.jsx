@@ -20,7 +20,9 @@ class Dashboard extends React.Component {
         document.title = this.props.documentTitle;
     }
     componentWillUpdate(nextProps, nextState) {
-        this.props.Session.set('currentPagePrivacy', nextProps.pagePrivacy);
+        if (this.props.pagePrivacy !== nextProps.pagePrivacy) {
+            this.props.Session.set('currentPagePrivacy', nextProps.pagePrivacy);
+        }
         if (this.props.match.params.id && nextProps.match.params.id !== this.props.match.params.id) {
             this.props.Session.set('selectedNoteId', nextProps.match.params.id);
         }
