@@ -3,7 +3,7 @@ import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { Session } from 'meteor/session';
 import { createContainer } from 'meteor/react-meteor-data';
-import { history } from '/imports/react/App';
+import { history } from '/imports/react/routes/Router';
 
 export class EmailVerification extends React.Component {
     constructor(props) {

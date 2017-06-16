@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { createContainer } from 'meteor/react-meteor-data';
 // Named exports
 import { userCredentialsSchema } from '/imports/startup/simple-schema-config';
-import { history } from '/imports/react/App';
+import { history } from '/imports/react/routes/Router';
 
 export class Signup extends React.Component {
     constructor(props) {

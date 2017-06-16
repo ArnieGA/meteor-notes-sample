@@ -6,7 +6,7 @@ import { Tracker } from 'meteor/tracker';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'react-router-dom';
-import { history } from '/imports/react/App';
+// import { history } from '/imports/react/App';
 // API's
 import { Notes } from '/imports/api/notes';
 // PAGES:
@@ -16,7 +16,16 @@ import Signup from '/imports/react/components/pages/Signup';
 import PageNotFound from '/imports/react/components/pages/PageNotFound';
 import EmailVerification from '/imports/react/components/pages/EmailVerification';
 
-// const userAuthenticated = !!Meteor.userId();
+export const history = Meteor.isClient ? require('history').createBrowserHistory() : undefined;
+
+const routes = [
+    { path: '/', exact: true, component: Login, privacy: 'unauth', rootPage: true, documentTitle: 'Notes: Login' },
+    { path: '/signup', exact: true, component: Signup, privacy: 'unauth', documentTitle: 'Notes: Signup' },
+    { path: '/dash', exact: true, component: Dashboard, privacy: 'auth', mainPage: true, documentTitle: 'Notes: Dashboard' },
+    { path: '/dash/:id', exact: true, component: Dashboard, privacy: 'auth' },
+    { path: '/verify-email/:token', exact: true, component: EmailVerification, privacy: 'unauth', documentTitle: 'Email Verification' },
+    { component: PageNotFound, privacy: 'unauth', documentTitle: '404: Not found' }
+];
 
 export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
     const isUnauthenticatedPath = currentPagePrivacy === 'unauth';
@@ -32,25 +41,19 @@ export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
     }
 };
 
-const routes = [
-    { path: '/', exact: true, component: Login, privacy: 'unauth', rootPage: true, documentTitle: 'Notes: Login' },
-    { path: '/signup', exact: true, component: Signup, privacy: 'unauth', documentTitle: 'Notes: Signup' },
-    { path: '/dash', exact: true, component: Dashboard, privacy: 'auth', mainPage: true, documentTitle: 'Notes: Dashboard' },
-    { path: '/dash/:id', exact: true, component: Dashboard, privacy: 'auth' },
-    { path: '/verify-email/:token', exact: true, component: EmailVerification, privacy: 'unauth', documentTitle: 'Email Verification' },
-    { component: PageNotFound, privacy: 'unauth', documentTitle: '404: Not found' }
-];
-
 // Start the selected note id tracker
-const selectedNoteIdTracker = Tracker.autorun(() => {
-    if (Meteor.isClient) {
+if (Meteor.isClient) {
+    const selectedNoteIdTracker = Tracker.autorun((computation) => {
         const selectedNoteId = Session.get('selectedNoteId');
         if (selectedNoteId) {
             history.push(`/dash/${selectedNoteId}`);
         }
-    }
-});
-
+        else {
+            if(history.location.pathname.includes('/dash/'))
+                history.push(routes.find((component) => component.mainPage).path);
+        }
+    });
+}
 
 export class RoutesWithSubRoutes extends React.Component {
     constructor(props) {

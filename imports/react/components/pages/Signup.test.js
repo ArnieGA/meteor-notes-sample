@@ -4,6 +4,8 @@ import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import expect from 'expect';
 import { mount } from 'enzyme';
+import createRouterContext from 'react-router-test-context';
+import PropTypes from 'prop-types';
 
 import { Signup } from './Signup';
 
@@ -13,27 +15,29 @@ if (Meteor.isClient) {
             signup1InitialState, signup2InitialState, submit, clearErrorState,
             resetAllStates;
 
+        Signup.contextTypes = {
+            router: PropTypes.object
+        };
         beforeEach(function () {
+            const context = createRouterContext();
             spy = expect.createSpy();
             wrapper1 = mount(
-                <MemoryRouter initialEntries={['/signup']} initialIndex={0}>
-                    <Signup
-                        createUser={() => { }}
-                        pagePrivacy='auth'
-                        Session={Session} />
-                </MemoryRouter>
+                <Signup
+                    createUser={() => { }}
+                    pagePrivacy='auth'
+                    Session={Session} />
+                , { context }
             );
             wrapper2 = mount(
-                <MemoryRouter initialEntries={['/signup']} initialIndex={0}>
-                    <Signup
-                        createUser={spy}
-                        pagePrivacy='auth'
-                        Session={Session} />
-                </MemoryRouter>
+                <Signup
+                    createUser={spy}
+                    pagePrivacy='auth'
+                    Session={Session} />
+                , { context }
             );
 
-            signup1 = wrapper1.find(Signup).node;
-            signup2 = wrapper2.find(Signup).node;
+            signup1 = wrapper1.node;
+            signup2 = wrapper2.node;
 
             signup1InitialState = { ...signup1.state };
             signup2InitialState = { ...signup2.state };

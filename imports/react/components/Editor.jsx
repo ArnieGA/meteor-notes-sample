@@ -49,8 +49,12 @@ export class Editor extends React.Component {
     }
     handleNoteRemove(e) {
         this.props.call('notes.remove', this.props.note._id, (err) => {
-            this.closeRemoveConfirmModal();
-            if (err) throw new Meteor.Error(err.error, err.reason);
+            this.closeRemoveConfirmModal()
+            if (err) {
+                throw new Meteor.Error(err.error, err.reason);
+            } else {
+                this.props.Session.set('selectedNoteId', undefined);
+            }
         });
     }
     // MODAL ACTIONS
