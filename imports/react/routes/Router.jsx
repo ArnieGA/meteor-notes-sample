@@ -6,7 +6,6 @@ import { Tracker } from 'meteor/tracker';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Router, Route, Switch } from 'react-router-dom';
-// import { history } from '/imports/react/App';
 // API's
 import { Notes } from '/imports/api/notes';
 // PAGES:
