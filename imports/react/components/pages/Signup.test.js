@@ -9,9 +9,9 @@ import { Signup } from './Signup';
 
 if (Meteor.isClient) {
     describe('Signup component tests', function () {
-        let spy, wrapper1, wrapper2, signup1, signup2, 
-        signup1InitialState, signup2InitialState, submit, clearErrorState,
-        resetAllStates;
+        let spy, wrapper1, wrapper2, signup1, signup2,
+            signup1InitialState, signup2InitialState, submit, clearErrorState,
+            resetAllStates;
 
         beforeEach(function () {
             spy = expect.createSpy();
@@ -74,14 +74,24 @@ if (Meteor.isClient) {
 
                     // Change fields inputs values and assert:
                     const newValue = 'testing';
-                    email.node.value = newValue;
-                    email.simulate('change');
+
+                    email.simulate('change', {
+                        target: {
+                            value: newValue
+                        }
+                    });
+                    password.simulate('change', {
+                        target: {
+                            value: newValue
+                        }
+                    });
+                    rePassword.simulate('change', {
+                        target: {
+                            value: newValue
+                        }
+                    });
                     expect(signup1.state['email']).toBe(newValue);
-                    password.node.value = newValue;
-                    password.simulate('change');
                     expect(signup1.state['password']).toBe(newValue);
-                    rePassword.node.value = newValue;
-                    rePassword.simulate('change');
                     expect(signup1.state['rePassword']).toBe(newValue);
 
                     resetAllStates(signup1);
@@ -123,28 +133,52 @@ if (Meteor.isClient) {
                     clearErrorState(signup1);
                     expect(signup1.state['error'].length).toBe(0);
                     // Assert that an error is set only when an email is provided:
-                    email.node.value = validEmail; email.simulate('change');
+                    email.simulate('change', {
+                        target: {
+                            value: validEmail
+                        }
+                    });
                     submit(wrapper1);
                     expect(signup1.state['error'].length).toNotBe(0);
                     resetAllStates(signup1);
                     expect(signup1.state['error'].length).toBe(0);
                     // Assert that an error is set only when password is present:
-                    password.node.value = validPassword; password.simulate('change');
+                    password.simulate('change', {
+                        target: {
+                            value: validPassword
+                        }
+                    });
                     submit(wrapper1);
                     expect(signup1.state['error'].length).toNotBe(0);
                     resetAllStates(signup1);
                     expect(signup1.state['error'].length).toBe(0);
                     // Assert that an error is set when only rePassword is present:
-                    rePassword.node.value = validPassword; rePassword.simulate('change');
+                    rePassword.simulate('change', {
+                        target: {
+                            value: validPassword
+                        }
+                    });
                     submit(wrapper1);
                     expect(signup1.state['error'].length).toNotBe(0);
                     resetAllStates(signup1);
                     expect(signup1.state['error'].length).toBe(0);
 
                     // Assert that no error is set when all fields are present on submit:           
-                    email.node.value = validEmail; email.simulate('change');
-                    password.node.value = validPassword; password.simulate('change');
-                    rePassword.node.value = validPassword; rePassword.simulate('change');
+                    email.simulate('change', {
+                        target: {
+                            value: validEmail
+                        }
+                    });
+                    password.simulate('change', {
+                        target: {
+                            value: validPassword
+                        }
+                    });
+                    rePassword.simulate('change', {
+                        target: {
+                            value: validPassword
+                        }
+                    });
                     submit(wrapper1);
                     expect(signup1.state['error'].length).toBe(0);
 
@@ -161,9 +195,21 @@ if (Meteor.isClient) {
                     // Assert that the initial error state is '':
                     expect(signup1.state['error'].length).toBe(0);
 
-                    email.node.value = validEmail; email.simulate('change');
-                    password.node.value = validPassword; password.simulate('change');
-                    rePassword.value = validPassword.slice(0, -1); rePassword.simulate('change');
+                    email.simulate('change', {
+                        target: {
+                            value: validEmail
+                        }
+                    });
+                    password.simulate('change', {
+                        target: {
+                            value: validPassword
+                        }
+                    });
+                    rePassword.simulate('change', {
+                        target: {
+                            value: validPassword.slice(0, -1)
+                        }
+                    });
                     submit(wrapper1);
                     expect(signup1.state['error'].length).toNotBe(0);
 
@@ -183,9 +229,21 @@ if (Meteor.isClient) {
                 const password = wrapper2.find("input[name='password']");
                 const rePassword = wrapper2.find("input[name='rePassword']");
 
-                email.node.value = validEmail; email.simulate('change');
-                password.node.value = validPassword; password.simulate('change');
-                rePassword.node.value = validPassword; rePassword.simulate('change');
+                email.simulate('change', {
+                    target: {
+                        value: validEmail
+                    }
+                });
+                password.simulate('change', {
+                    target: {
+                        value: validPassword
+                    }
+                });
+                rePassword.simulate('change', {
+                    target: {
+                        value: validPassword
+                    }
+                });
                 submit(wrapper2);
 
                 expect(spy.calls[0].arguments[0]).toEqual({ email: validEmail, password: validPassword });
@@ -205,9 +263,21 @@ if (Meteor.isClient) {
                 const rePassword = wrapper2.find("input[name='rePassword']");
                 const reason = 'This just failed man!';
 
-                email.node.value = validEmail; email.simulate('change');
-                password.node.value = validPassword; password.simulate('change');
-                rePassword.node.value = validPassword; rePassword.simulate('change');
+                email.simulate('change', {
+                    target: {
+                        value: validEmail
+                    }
+                });
+                password.simulate('change', {
+                    target: {
+                        value: validPassword
+                    }
+                });
+                rePassword.simulate('change', {
+                    target: {
+                        value: validPassword
+                    }
+                });
                 submit(wrapper2);
 
                 expect(spy).toHaveBeenCalled();
