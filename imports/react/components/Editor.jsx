@@ -79,14 +79,17 @@ export class Editor extends React.Component {
 						className='boxed-view__box flexible'
 						overlayClassName='boxed-view boxed-view--modal'
 						onRequestClose={this.closeRemoveConfirmModal}>
-						<h2>{`Are you sure you want to remove note '${this.props.note.title || defaultNoteTitle}'`}</h2>
+						<h2>{`Are you sure you want to remove this note?`}</h2>
+						<p>{`'${this.props.note.title || defaultNoteTitle}'`}</p>
 						<button ref='modalConfirmRemove' className='button button--pill hover-alt-color thicker'
 							style={{ marginRight: '1rem' }}
 							onClick={this.handleNoteRemove}>Yes, remove</button>
 						<button ref='modalCancel' className='button button--secondary hover-alt-color'
 							onClick={this.closeRemoveConfirmModal}>Cancel</button>
 					</Modal>
-					<input type="text" placeholder="Your Note's Title..."
+					<input type="text"
+						className='editor__title'
+						placeholder="Your Note's Title..."
 						ref='noteTitle'
 						name='noteTitle'
 						onChange={this.handleTitleChange}
@@ -94,26 +97,28 @@ export class Editor extends React.Component {
 					<textarea
 						ref="noteBody"
 						name='noteBody'
-						cols="30" rows="10"
+						className='editor__body'
 						value={this.state.body}
 						placeholder='Type in your note here'
 						onChange={this.handleBodyChange}></textarea>
-					<button
-						ref='removeNote'
-						className='button button--pill hover-alt-color'
-						onClick={this.openRemoveConfirmModal}>Delete Note</button>
+					<div>
+						<button
+							ref='removeNote'
+							className='button button--pill hover-alt-color'
+							onClick={this.openRemoveConfirmModal}>Delete Note</button>
+					</div>
 				</div>
 			);
 		} else if (!!this.props.selectedNoteId) {
 			return (
 				<div className='editor'>
-					<p>Note not found.</p>
+					<p className="editor__message">Note not found.</p>
 				</div>
 			);
 		} else {
 			return (
 				<div className='editor'>
-					<p>Pick or create a note to get started.</p>
+					<p className="editor__message">Pick or create a note to get started.</p>
 				</div>
 			);
 		}
