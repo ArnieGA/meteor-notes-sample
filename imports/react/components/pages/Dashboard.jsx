@@ -30,10 +30,14 @@ class Dashboard extends React.Component {
     render() {
         return (
             <div>
-                <PrivateHeader title='Dashboard' />
+                <PrivateHeader title='Notes' />
                 <div className='page-container'>
-                    <NoteList />
-                    <Editor />
+                    <div className="page-container__sidebar">
+                        <NoteList />
+                    </div>
+                    <div className="page-container__main">
+                        <Editor />
+                    </div>
                 </div>
             </div>
         );

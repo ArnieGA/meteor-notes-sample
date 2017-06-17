@@ -15,9 +15,8 @@ import NoteListEmptyItem from '/imports/react/components/NoteListEmptyItem';
 
 export const NoteList = (props) => {
     return (
-        <div>
+        <div className='item-list'>
             <NoteListHeader />
-            NoteList {props.notes.length}
             <FlipMove maintainContainerHeight={true}>
                 {
                     props.notes.length > 0 ?

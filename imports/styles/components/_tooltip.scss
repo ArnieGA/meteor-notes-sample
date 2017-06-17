@@ -1,8 +1,8 @@
 // .ToolTipPortal {
 //     &:first-child(){
-//         background-color: $dark_grey;
+//         background-color: $dark-grey;
 //         &:first-child() * {
-//             border-color: $dark_grey !important;
+//             border-color: $dark-grey !important;
 //         }
 //     }
 // }
@@ -14,6 +14,6 @@
     * {
         margin:0;
     }
-    color: $dark_grey;
+    color: $dark-grey;
     font-size: 1.2rem;
 }

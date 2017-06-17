@@ -1,15 +1,17 @@
 .private-header {
-    background-color: $brand_primary;
-    color: ghostwhite;
-    padding: 1.5rem;
-    margin-bottom: $space;
+    background-color: $header-bg;
+    color: $header-color;
+    // padding: 1.5rem;
+    // margin-bottom: $space;
 }
 
 .private-header__container {
     display: flex;
+    height: $header-height;
     justify-content: space-between;
-    max-width: $site_max_width;
+    max-width: $site-max-width;
     margin: 0 auto;
+    padding: $space;
 }
 
 .private-header__title {

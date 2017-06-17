@@ -22,7 +22,7 @@ accounts-facebook
 accounts-google
 accounts-github
 session
-fourseven:scss
 dynamic-import
 react-meteor-data
 practicalmeteor:mocha
+fourseven:scss

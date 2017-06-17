@@ -50,7 +50,6 @@ export class EmailVerification extends React.Component {
                 //redirect:
                 history.replace('/');
             } else {
-                console.log(this.state.seconds);
                 this.setState({ seconds: --this.state.seconds });
             }
         }, 1000);

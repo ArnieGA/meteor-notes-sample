@@ -1,10 +1,10 @@
 .button {
-    background-color: $button_bg;
+    background-color: $button-bg;
     border: none;
-    color: $button_text_color;
+    color: $button-text-color;
     cursor: pointer;
-    font-size: $base_font_size;
-    padding: $small_padding;
+    font-size: $base-font-size;
+    padding: $small-padding;
     margin-bottom: $space;
     text-transform: uppercase;
     line-height: 1.2;
@@ -18,39 +18,39 @@
 
 .button--pill {
     background-color: transparent;
-    border: 1px solid $button_pill_color;
-    color: $button_pill_color;
+    border: 1px solid $button-pill-color;
+    color: $button-pill-color;
     padding: .3rem .8rem;
     text-transform: capitalize;
     // width: 8rem;
     &.thicker {
-        padding: $small_padding;
+        padding: $small-padding;
     }    
     &.hover-darken:not(.hover-lighten):not(.hover-alt-color):hover{
         transition: border-color .5s ease-in-out, color .5s ease-in-out;
-        color: $button_pill_color_darken;
-        border-color: $button_pill_color_darken;
+        color: $button-pill-color-darken;
+        border-color: $button-pill-color-darken;
     }
     &.hover-lighten:not(.hover-darken):not(.hover-alt-color):hover {
         transition: border-color .5s ease-in-out, color .5s ease-in-out;
-        color: $button_pill_color_lighten;
-        border-color: $button_pill_color_lighten;        
+        color: $button-pill-color-lighten;
+        border-color: $button-pill-color-lighten;        
     }
     &.hover-alt-color:hover{
         transition: background-color .5s ease-in-out, color .5s ease-in-out;
-        background-color: $button_pill_color;
+        background-color: $button-pill-color;
         color: ghostwhite;
         border-color: none;
     }
 }
 
 .button--secondary {
-    background-color: $button_secondary_bg;
-    color: $button_secondary_color;
-    border: 1px solid $button_secondary_border_color;
+    background-color: $button-secondary-bg;
+    color: $button-secondary-color;
+    border: 1px solid $button-secondary-border-color;
     &.hover-alt-color:hover {
         transition: background-color .5s ease-in-out, color .5s ease-in-out;
-        background-color: darken($button_secondary_bg, 30%);
+        background-color: darken($button-secondary-bg, 30%);
         color: ghostwhite;
         border: none;
     }
