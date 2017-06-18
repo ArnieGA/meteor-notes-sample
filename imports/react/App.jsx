@@ -6,10 +6,6 @@ import { Meteor } from 'meteor/meteor';
 // export const history = Meteor.isClient ? require('history').createBrowserHistory() : undefined;
 
 class App extends React.Component {
-    componentWillMount() {
-    }
-    componentWillUnmount() {
-    }
     render() {
         return (
             <Router />

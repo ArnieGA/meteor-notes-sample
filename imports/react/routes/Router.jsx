@@ -17,7 +17,7 @@ import EmailVerification from '/imports/react/components/pages/EmailVerification
 
 export const history = Meteor.isClient ? require('history').createBrowserHistory() : undefined;
 
-const routes = [
+export const routes = [
     { path: '/', exact: true, component: Login, privacy: 'unauth', rootPage: true, documentTitle: 'Notes: Login' },
     { path: '/signup', exact: true, component: Signup, privacy: 'unauth', documentTitle: 'Notes: Signup' },
     { path: '/dash', exact: true, component: Dashboard, privacy: 'auth', mainPage: true, documentTitle: 'Notes: Dashboard' },
@@ -39,20 +39,6 @@ export const onAuthChange = (isAuthenticated, currentPagePrivacy) => {
         history.replace(rootPage.path);
     }
 };
-
-// Start the selected note id tracker
-if (Meteor.isClient) {
-    const selectedNoteIdTracker = Tracker.autorun((computation) => {
-        const selectedNoteId = Session.get('selectedNoteId');
-        if (selectedNoteId) {
-            history.push(`/dash/${selectedNoteId}`);
-        }
-        else {
-            if(history.location.pathname.includes('/dash/'))
-                history.push(routes.find((component) => component.mainPage).path);
-        }
-    });
-}
 
 export class RoutesWithSubRoutes extends React.Component {
     constructor(props) {

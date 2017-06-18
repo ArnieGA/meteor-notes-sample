@@ -8,6 +8,7 @@
 .private-header__container {
     display: flex;
     height: $header-height;
+    align-items: center;
     justify-content: space-between;
     max-width: $site-max-width;
     margin: 0 auto;
@@ -16,4 +17,14 @@
 
 .private-header__title {
     margin: 0;
+}
+
+.private-header__nav-toggle {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+
+    @include desktop {
+        display: none;
+    }
 }
