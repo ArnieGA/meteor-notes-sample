@@ -89,7 +89,7 @@ export class Editor extends React.Component {
 					</Modal>
 					<input type="text"
 						className='editor__title'
-						placeholder="Your Note's Title..."
+						placeholder={`${this.props.note.title || defaultNoteTitle}`}
 						ref='noteTitle'
 						name='noteTitle'
 						onChange={this.handleTitleChange}

@@ -69,6 +69,4 @@ $button-secondary-color-darken: darken($button-secondary-color, 8%);
 $button-secondary-border-color-darken: darken($button-secondary-border-color, 8%);
 
 // Item
-$item-bg: $light-grey;
-$item-border-color: darken($item-bg, 8%);
-$item-text-color: $dark-grey;
+$item-border-width: 4px;

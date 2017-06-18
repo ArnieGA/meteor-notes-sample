@@ -10,14 +10,14 @@ export class NoteListItem extends React.Component {
         super(props)
     }
     render() {
+        const className = this.props.note.selected ? 'item item--selected' : 'item';
         return (
-            <div onClick={() => {
+            <div className={className} onClick={() => {
                 this.props.Session.set('selectedNoteId', this.props.note._id);
                 // props.Session.set('selectedNoteId', 'asdfasdf');
             }}>
-                <h5>{this.props.note.title || defaultNoteTitle}</h5>
-                {this.props.note.selected ? 'selected' : undefined}
-                <p>{moment(this.props.note.updatedAt).format(updatedAtFormat)}</p>
+                <h5 className='item__title'>{this.props.note.title || defaultNoteTitle}</h5>
+                <p className='item__subtitle'>{moment(this.props.note.updatedAt).format(updatedAtFormat)}</p>
             </div>
         );
     }

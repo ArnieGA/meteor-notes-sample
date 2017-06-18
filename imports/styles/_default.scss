@@ -3,16 +3,25 @@
     height: $page-content-height;
     margin: 0 auto;
     max-width: $site-max-width;
-    padding: $large-space $space;
+    padding: 0;
+    @media(min-width: 50rem){
+        padding: $large-space $space;
+    }
 }
 
 .page-container__sidebar {
-    display: flex;
+    display: none;
     padding-right: $large-space;
     width: $page-content-sidebar-width;
+    @media (min-width: 50rem) {
+        display: flex;
+    }
 }
 
 .page-container__main {
     display: flex;
-    width: $page-content-main-width;
+    width: 100%;
+    @media( min-width: 50rem ){
+        width: $page-content-main-width;
+    }
 }

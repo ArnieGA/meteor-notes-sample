@@ -8,7 +8,7 @@
     width: 100%;
 }
 
-.editor__title {
+input.editor__title {
     border: none;
     border-bottom: 2px solid $grey;
     font-size: $large-font-size;
@@ -18,7 +18,7 @@
     text-transform: capitalize;
 }
 
-.editor__body {
+textarea.editor__body {
     flex-grow: 1;
     font-weight: 300;
     margin-bottom: $large-space;
