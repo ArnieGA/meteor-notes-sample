@@ -25,6 +25,7 @@ textarea.editor__body {
     outline: none;
     padding: $input-spacing;
     resize: none;
+    -webkit-overflow-scrolling: touch;
 }
 
 .editor__message {
