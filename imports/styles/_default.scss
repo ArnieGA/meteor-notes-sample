@@ -4,7 +4,7 @@
     margin: 0 auto;
     max-width: $site-max-width;
     padding: 0;
-    @media(min-width: 50rem){
+    @include desktop{
         padding: $large-space $space;
     }
 }
@@ -13,7 +13,7 @@
     display: none;
     padding-right: $large-space;
     width: $page-content-sidebar-width;
-    @media (min-width: 50rem) {
+    @include desktop {
         display: flex;
     }
 }
@@ -21,7 +21,7 @@
 .page-container__main {
     display: flex;
     width: 100%;
-    @media( min-width: 50rem ){
+    @include desktop {
         width: $page-content-main-width;
     }
 }

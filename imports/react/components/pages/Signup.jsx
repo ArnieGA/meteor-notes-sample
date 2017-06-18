@@ -52,6 +52,9 @@ export class Signup extends React.Component {
                     this.clearFields();
                     this.refs.email.focus();
                 } else {
+                    this.setState({ error: '' });
+                    this.clearFields();
+                    this.refs.email.focus();
                     this.sendVerificationEmail(email);
                 }
             });
@@ -98,13 +101,11 @@ export class Signup extends React.Component {
         }
     }
     sendVerificationEmail(email) {
-        // const newUser = Meteor.users.findOne({ 'emails': { $elemMatch: { 'address': 'gonzalez.a.dev@gmail.com', 'verified': false } } });
-        this.setState({ error: '' });
-        this.clearFields();
-        this.refs.email.focus();
-        Meteor.call('email.sendVerification', email, (err) => {
+        Meteor.call('email.sendVerification', email, (err, res) => {
             if (err) {
                 this.setState({ error: err.reason });
+            } else if (res === 'unallowed') {
+                return;
             } else {
                 this.openSuccessModal();
             }
