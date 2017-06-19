@@ -118,7 +118,8 @@ export class Editor extends React.Component {
 		} else {
 			return (
 				<div className='editor'>
-					<p className="editor__message">Pick or create a note to get started.</p>
+					<p className="editor__message--desktop">Pick or create a note to get started.</p>
+					<p className='editor__message--mobile'>Click on the  <img className='editor__message-bars' src="/images/bars-black.svg" />  icon above to get started.</p>
 				</div>
 			);
 		}

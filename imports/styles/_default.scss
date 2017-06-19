@@ -28,8 +28,10 @@
     }
 }
 
-.is-nav-open .page-container__sidebar {
-    left: 0;
+.is-nav-open {
+    .page-container__sidebar {
+        left: 0;
+    }
 }
 
 .page-container__main {

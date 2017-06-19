@@ -28,9 +28,25 @@ textarea.editor__body {
     -webkit-overflow-scrolling: touch;
 }
 
-.editor__message {
+.editor__message--desktop {
     align-self: center;
     font-style: italic;
-    // margin: 0 auto;
-    // text-align: center;
+    display: none;
+    @include desktop (){
+        display: initial;
+    }
+}
+
+.editor__message--mobile {
+    align-self: center;
+    display: initial;
+    font-style: italic;
+    @include desktop (){
+        display: none;
+    }
+}
+
+.editor__message-bars {
+    height: 1rem;
+    width: 1.5rem;
 }
