@@ -6,7 +6,7 @@
     "test": "meteor test --driver-package=practicalmeteor:mocha"
   },
   "engines": {
-    "node": "4.8.3"
+    "node": "6.11.1"
   },
   "dependencies": {
     "babel-runtime": "^6.20.0",
