@@ -50,3 +50,9 @@ textarea.editor__body {
     height: 1rem;
     width: 1.5rem;
 }
+
+.remove-note-modal-overlay,
+.remove-note-modal
+{
+    z-index: 2000;
+}

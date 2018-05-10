@@ -76,8 +76,8 @@ export class Editor extends React.Component {
 					<Modal
 						isOpen={this.state.openRemoveConfirmModal}
 						contentLabel='Signup'
-						className='boxed-view__box flexible'
-						overlayClassName='boxed-view boxed-view--modal'
+						className='boxed-view__box flexible remove-note-modal'
+						overlayClassName='boxed-view boxed-view--modal remove-note-modal-overlay'
 						onRequestClose={this.closeRemoveConfirmModal}>
 						<h2>{`Are you sure you want to remove this note?`}</h2>
 						<p>{`'${this.props.note.title || defaultNoteTitle}'`}</p>
