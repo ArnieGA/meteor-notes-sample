@@ -12,7 +12,7 @@
 		"babel-runtime": "6.20.0",
 		"clipboard": "1.6.1",
 		"meteor-node-stubs": "0.2.11",
-		"moment": "2.18.1",
+		"moment": "2.27.0",
 		"prop-types": "15.5.10",
 		"react": "15.5.4",
 		"react-addons-pure-render-mixin": "15.5.2",
